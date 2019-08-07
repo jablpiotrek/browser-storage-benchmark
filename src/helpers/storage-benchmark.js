@@ -1,5 +1,5 @@
 export default function storageBenchmark(size, number, driver) {
-  const result = null;
+  const result = 0;
   return {
     size,
     number,

@@ -57,7 +57,11 @@ export default class Controls extends Component {
     if (!(errors.number && errors.size)) {
       const { size, number, driver } = this.state;
       const { handleAddResult } = this.props;
-      const result = storageBenchmark(size.value, number.value, driver);
+      const result = storageBenchmark(
+        Number.parseInt(size.value, 10),
+        Number.parseInt(number.value, 10),
+        driver,
+      );
       handleAddResult({
         data: result,
         id: resultId,

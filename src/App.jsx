@@ -12,10 +12,19 @@ export default class App extends Component {
 
     this.addResult = this.addResult.bind(this);
     this.clearResults = this.clearResults.bind(this);
+    this.deleteResult = this.deleteResult.bind(this);
   }
 
   addResult(result) {
     this.setState(prevState => ({ results: prevState.results.concat(result) }));
+  }
+
+  deleteResult(id) {
+    const { results } = this.state;
+    const newResults = results.filter(result => (result.id !== id));
+    this.setState({
+      results: newResults,
+    });
   }
 
   clearResults() {
@@ -32,6 +41,7 @@ export default class App extends Component {
         />
         <Results
           results={results}
+          handleDeleteResult={this.deleteResult}
         />
       </div>
     );
