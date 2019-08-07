@@ -1,14 +1,21 @@
 import localforage from 'localforage';
 
-async function setup() {
+async function setup(selectedDriver) {
+  const drivers = {
+    WebSQL: localforage.WEBSQL,
+    IndexedDB: localforage.INDEXEDDB,
+    localStorage: localforage.LOCALSTORAGE,
+  };
+
   localforage.config({
-    driver: localforage.WEBSQL,
+    driver: drivers[selectedDriver],
   });
+  console.log(drivers[selectedDriver])
   await localforage.setItem('init', true);
 }
 
 export default async function storageBenchmark(size, number, driver) {
-  await setup();
+  await setup(driver);
   const startTime = Date.now();
   await localforage.setItem('test', 'test');
   const endTime = Date.now();
