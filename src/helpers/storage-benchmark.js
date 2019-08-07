@@ -24,15 +24,42 @@ function prepareData(size, number) {
 }
 
 export default async function storageBenchmark(size, number, driver) {
+  // Prepare data
   const data = prepareData(size, number);
+
+  // Setup storage provider
   await setup(driver);
+
+  // Get test start time
   const startTime = Date.now();
-  await localforage.setItem('start', 'true');
+
+  // Confirm proper storage init
+  await localforage.setItem('start', true);
+  const initialTest = await localforage.getItem('start');
+  if (!initialTest) {
+    throw new Error('Storage initial test failed');
+  }
+
+  // Test loop
   data.forEach(async (item) => {
     await localforage.setItem(item.key, item.data);
+    const temp = await localforage.getItem(item.key);
+    if (temp !== item.data) {
+      throw new Error('Data retrieved form storage does not match data wrote!');
+    }
   });
-  await localforage.setItem('end', 'true');
+
+  // Final tets - confirm that storage is available
+  await localforage.setItem('end', true);
+  const finalTest = await localforage.getItem('end');
+  if (!finalTest) {
+    throw new Error('Storage final test failed');
+  }
+
+  // Record test end time
   const endTime = Date.now();
+
+  // Push results
   const result = endTime - startTime;
   return {
     size,
