@@ -96,6 +96,7 @@ export default class Controls extends Component {
         <select
           name="driver"
           onChange={this.handleDriverChange}
+          defaultValue="localStorage"
         >
           <option value="IndexedDB">IndexedDB</option>
           <option value="WebSQL">WebSQL</option>
