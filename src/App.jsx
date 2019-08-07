@@ -29,7 +29,7 @@ export default class App extends Component {
 
   deleteResult(id) {
     const { results } = this.state;
-    const newResults = results.filter(result => (result.id !== id));
+    const newResults = results.filter(result => result.id !== id);
     this.setState({
       results: newResults,
     });
