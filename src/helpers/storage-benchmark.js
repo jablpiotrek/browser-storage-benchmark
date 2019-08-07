@@ -1,4 +1,6 @@
 import localforage from 'localforage';
+import randomstring from 'randomstring';
+
 
 async function setup(selectedDriver) {
   await localforage.clear();
@@ -11,10 +13,25 @@ async function setup(selectedDriver) {
   await localforage.setItem('init', true);
 }
 
+function prepareData(size, number) {
+  const data = [];
+  for (let i = 0; i < number; i += 1) {
+    data.push({
+      key: randomstring.generate(10),
+      data: randomstring.generate(size),
+    });
+  }
+  return data;
+}
+
 export default async function storageBenchmark(size, number, driver) {
+  const data = prepareData(size, number);
   await setup(driver);
   const startTime = Date.now();
   await localforage.setItem('test', 'test');
+  data.forEach(async (item) => {
+    await localforage.setItem(item.key, item.data);
+  });
   const endTime = Date.now();
   const result = endTime - startTime;
   return {
