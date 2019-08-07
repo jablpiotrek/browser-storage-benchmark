@@ -1,16 +1,13 @@
 import localforage from 'localforage';
 
 async function setup(selectedDriver) {
+  await localforage.clear();
   const drivers = {
     WebSQL: localforage.WEBSQL,
     IndexedDB: localforage.INDEXEDDB,
     localStorage: localforage.LOCALSTORAGE,
   };
-
-  localforage.config({
-    driver: drivers[selectedDriver],
-  });
-  console.log(drivers[selectedDriver])
+  await localforage.setDriver(drivers[selectedDriver]);
   await localforage.setItem('init', true);
 }
 
