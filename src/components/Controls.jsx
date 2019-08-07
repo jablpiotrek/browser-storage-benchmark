@@ -20,7 +20,7 @@ export default class Controls extends Component {
         number: false,
         size: false,
       },
-      driver: 'ls',
+      driver: 'localStorage',
       resultId: 1,
     };
 
@@ -52,12 +52,12 @@ export default class Controls extends Component {
     });
   }
 
-  handleEvaluate() {
+  async handleEvaluate() {
     const { errors, resultId } = this.state;
     if (!(errors.number && errors.size)) {
       const { size, number, driver } = this.state;
       const { handleAddResult } = this.props;
-      const result = storageBenchmark(
+      const result = await storageBenchmark(
         Number.parseInt(size.value, 10),
         Number.parseInt(number.value, 10),
         driver,
