@@ -10,7 +10,6 @@ async function setup(selectedDriver) {
     localStorage: localforage.LOCALSTORAGE,
   };
   await localforage.setDriver(drivers[selectedDriver]);
-  await localforage.setItem('init', true);
 }
 
 function prepareData(size, number) {
@@ -28,10 +27,11 @@ export default async function storageBenchmark(size, number, driver) {
   const data = prepareData(size, number);
   await setup(driver);
   const startTime = Date.now();
-  await localforage.setItem('test', 'test');
+  await localforage.setItem('start', 'true');
   data.forEach(async (item) => {
     await localforage.setItem(item.key, item.data);
   });
+  await localforage.setItem('end', 'true');
   const endTime = Date.now();
   const result = endTime - startTime;
   return {

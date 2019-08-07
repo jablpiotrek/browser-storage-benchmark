@@ -8,11 +8,19 @@ export default class App extends Component {
     super(props);
     this.state = {
       results: [],
+      isBusy: false,
     };
 
     this.addResult = this.addResult.bind(this);
     this.clearResults = this.clearResults.bind(this);
     this.deleteResult = this.deleteResult.bind(this);
+    this.setBusyState = this.setBusyState.bind(this);
+  }
+
+  setBusyState(isBusy) {
+    this.setState({
+      isBusy,
+    });
   }
 
   addResult(result) {
@@ -32,16 +40,19 @@ export default class App extends Component {
   }
 
   render() {
-    const { results } = this.state;
+    const { results, isBusy } = this.state;
     return (
       <div className="App">
         <Controls
           handleAddResult={this.addResult}
           handleClearResults={this.clearResults}
+          handleBusyState={this.setBusyState}
+          isBusy={isBusy}
         />
         <Results
           results={results}
           handleDeleteResult={this.deleteResult}
+          isBusy={isBusy}
         />
       </div>
     );

@@ -21,7 +21,7 @@ export default class Controls extends Component {
         size: false,
       },
       driver: 'localStorage',
-      resultId: 1,
+      resultId: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -54,19 +54,27 @@ export default class Controls extends Component {
 
   async handleEvaluate() {
     const { errors, resultId } = this.state;
+    const { handleBusyState } = this.props;
+
     if (!(errors.number && errors.size)) {
+      handleBusyState(true);
+
+      this.setState({ resultId: resultId + 1 });
       const { size, number, driver } = this.state;
       const { handleAddResult } = this.props;
+
       const result = await storageBenchmark(
         Number.parseInt(size.value, 10),
         Number.parseInt(number.value, 10),
         driver,
       );
+
       handleAddResult({
         data: result,
         id: resultId,
       });
-      this.setState({ resultId: resultId + 1 });
+
+      handleBusyState(false);
     }
   }
 
@@ -84,7 +92,7 @@ export default class Controls extends Component {
 
   render() {
     const { size, number, errors } = this.state;
-    const { handleClearResults } = this.props;
+    const { handleClearResults, isBusy } = this.props;
     function errorText(min, max) {
       return `Please enter correct value (Integer, between ${min} and ${max}).`;
     }
@@ -121,7 +129,7 @@ export default class Controls extends Component {
         <button
           type="button"
           onClick={this.handleEvaluate}
-          disabled={errors.size || errors.number}
+          disabled={errors.size || errors.number || isBusy}
         >
           Evaluate results
         </button>
@@ -139,4 +147,6 @@ export default class Controls extends Component {
 Controls.propTypes = {
   handleAddResult: PropTypes.func.isRequired,
   handleClearResults: PropTypes.func.isRequired,
+  handleBusyState: PropTypes.func.isRequired,
+  isBusy: PropTypes.bool.isRequired,
 };
