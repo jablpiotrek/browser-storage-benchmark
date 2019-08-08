@@ -4,16 +4,20 @@ import PropTypes from 'prop-types';
 function Results(props) {
   const { results, handleDeleteResult } = props;
   const resultsTable = results.map(result => (
-    <tr key={result.id}>
-      <td>{result.id}</td>
-      <td>{result.data.driver}</td>
-      <td>{result.data.size}</td>
-      <td>{result.data.number}</td>
-      <td>{result.data.result}</td>
-      <td>
+    <tr
+      key={result.id}
+      className="results__table-row"
+    >
+      <td className="results__table-cell">{result.id}</td>
+      <td className="results__table-cell">{result.data.driver}</td>
+      <td className="results__table-cell">{result.data.size}</td>
+      <td className="results__table-cell">{result.data.number}</td>
+      <td className="results__table-cell">{result.data.result}</td>
+      <td className="results__table-cell">
         <button
           type="button"
           onClick={() => { handleDeleteResult(result.id); }}
+          className="results__delete-button"
         >
           Delete
         </button>
@@ -24,15 +28,15 @@ function Results(props) {
   function content() {
     if (results.length) {
       return (
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Storage provider</th>
-              <th>Write/read size</th>
-              <th>Number of writes/reads</th>
-              <th>Delay</th>
-              <th />
+        <table className="results__table">
+          <thead className="results__table-header">
+            <tr className="results__table-row">
+              <th className="results__table-cell">ID</th>
+              <th className="results__table-cell">Storage provider</th>
+              <th className="results__table-cell">Single write/read length</th>
+              <th className="results__table-cell">Number of writes/reads</th>
+              <th className="results__table-cell">Delay time [ms]</th>
+              <th className="results__table-cell" />
             </tr>
           </thead>
           <tbody>
@@ -41,10 +45,13 @@ function Results(props) {
         </table>
       );
     }
-    return 'No results yet...';
+    return (
+      <p>No results</p>
+    );
   }
   return (
-    <div className="Results">
+    <div className="results">
+      <h3>Results</h3>
       {content()}
     </div>
   );

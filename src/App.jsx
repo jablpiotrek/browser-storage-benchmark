@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Controls from './components/Controls';
 import Results from './components/Results';
+import Header from './components/Header';
 import './styles/App.scss';
 
 export default class App extends Component {
@@ -18,9 +19,7 @@ export default class App extends Component {
   }
 
   setBusyState(isBusy) {
-    this.setState({
-      isBusy,
-    });
+    this.setState({ isBusy });
   }
 
   addResult(result) {
@@ -30,9 +29,7 @@ export default class App extends Component {
   deleteResult(id) {
     const { results } = this.state;
     const newResults = results.filter(result => result.id !== id);
-    this.setState({
-      results: newResults,
-    });
+    this.setState({ results: newResults });
   }
 
   clearResults() {
@@ -43,6 +40,7 @@ export default class App extends Component {
     const { results, isBusy } = this.state;
     return (
       <div className="App">
+        <Header />
         <Controls
           handleAddResult={this.addResult}
           handleClearResults={this.clearResults}
