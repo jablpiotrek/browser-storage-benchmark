@@ -33,7 +33,7 @@ function Results(props) {
             <tr className="results__table-row">
               <th className="results__table-cell">ID</th>
               <th className="results__table-cell">Storage provider</th>
-              <th className="results__table-cell">Write/read size</th>
+              <th className="results__table-cell">Single write/read length</th>
               <th className="results__table-cell">Number of writes/reads</th>
               <th className="results__table-cell">Delay time [ms]</th>
               <th className="results__table-cell" />
