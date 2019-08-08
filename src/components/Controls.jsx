@@ -8,12 +8,12 @@ export default class Controls extends Component {
     this.state = {
       size: {
         min: 1,
-        max: 100,
+        max: 20000,
         value: 1,
       },
       number: {
         min: 1,
-        max: 200,
+        max: 500,
         value: 1,
       },
       errors: {
@@ -98,47 +98,60 @@ export default class Controls extends Component {
     }
 
     return (
-      <div className="Controls">
-        <h2>Set testing parameters</h2>
-        <h3>Select storage provider</h3>
-        <select
-          name="driver"
-          onChange={this.handleDriverChange}
-          defaultValue="localStorage"
-        >
-          <option value="IndexedDB">IndexedDB</option>
-          <option value="WebSQL">WebSQL</option>
-          <option value="localStorage">localStorage</option>
-        </select>
-        <h3>Number of reads/writes</h3>
-        <input
-          type="text"
-          name="number"
-          value={number.value}
-          onChange={this.handleChange}
-        />
-        {errors.number ? errorText(number.min, number.max) : null}
-        <h3>Size of single write/read</h3>
-        <input
-          type="text"
-          name="size"
-          value={size.value}
-          onChange={this.handleChange}
-        />
-        {errors.size ? errorText(size.min, size.max) : null}
-        <button
-          type="button"
-          onClick={this.handleEvaluate}
-          disabled={errors.size || errors.number || isBusy}
-        >
-          Evaluate results
-        </button>
-        <button
-          type="button"
-          onClick={handleClearResults}
-        >
-          Clear Results
-        </button>
+      <div className="controls">
+        <h3 className="controls__heading">Set testing parameters</h3>
+        <div className="controls__section">
+          <h4 className="controls__section-heading">Select storage provider</h4>
+          <select
+            name="driver"
+            onChange={this.handleDriverChange}
+            defaultValue="localStorage"
+            className="controls__input-select"
+          >
+            <option value="IndexedDB">IndexedDB</option>
+            <option value="WebSQL">WebSQL</option>
+            <option value="localStorage">localStorage</option>
+          </select>
+        </div>
+        <div className="controls__section">
+          <h4 className="controls__section-heading">Number of write/read operations</h4>
+          <input
+            type="text"
+            name="number"
+            value={number.value}
+            onChange={this.handleChange}
+            className="controls__input"
+          />
+          {errors.number ? errorText(number.min, number.max) : null}
+        </div>
+        <div>
+          <h4 className="controls__section-heading">Length of single write/read</h4>
+          <input
+            type="text"
+            name="size"
+            value={size.value}
+            onChange={this.handleChange}
+            className="controls__input"
+          />
+          {errors.size ? errorText(size.min, size.max) : null}
+        </div>
+        <div className="controls__section">
+          <button
+            type="button"
+            onClick={this.handleEvaluate}
+            disabled={errors.size || errors.number || isBusy}
+            className="controls__button"
+          >
+            {isBusy ? 'Working...' : 'Run test'}
+          </button>
+          <button
+            type="button"
+            onClick={handleClearResults}
+            className="controls__button"
+          >
+            Clear Results
+          </button>
+        </div>
       </div>
     );
   }
