@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import storageBenchmark from '../helpers/storage-benchmark';
 
+import '../styles/controls.scss';
+
 export default class Controls extends Component {
   constructor(props) {
     super(props);
@@ -122,9 +124,11 @@ export default class Controls extends Component {
             onChange={this.handleChange}
             className="controls__input"
           />
-          {errors.number ? errorText(number.min, number.max) : null}
+          <p className="controls__error">
+            {errors.number ? errorText(number.min, number.max) : null}
+          </p>
         </div>
-        <div>
+        <div className="controls__section">
           <h4 className="controls__section-heading">Length of single write/read</h4>
           <input
             type="text"
@@ -133,7 +137,9 @@ export default class Controls extends Component {
             onChange={this.handleChange}
             className="controls__input"
           />
-          {errors.size ? errorText(size.min, size.max) : null}
+          <p className="controls__error">
+            {errors.size ? errorText(size.min, size.max) : null}
+          </p>
         </div>
         <div className="controls__section">
           <button

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Controls from './components/Controls';
 import Results from './components/Results';
 import Header from './components/Header';
-import './styles/App.scss';
+import './styles/app.scss';
 
 export default class App extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ export default class App extends Component {
   render() {
     const { results, isBusy } = this.state;
     return (
-      <div className="App">
+      <div className="app">
         <Header />
         <Controls
           handleAddResult={this.addResult}
