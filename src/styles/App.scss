@@ -1,3 +1,14 @@
-.App {
-  margin: 20px;
+@import './globals.scss';
+
+.app {
+  margin: $spacer / 2 $spacer;
+
+  @media screen and (min-width: $screen-medium) {
+    margin: $spacer auto;
+    max-width: 700px;
+  }
+
+  @media screen and (min-width: $screen-large) {
+    max-width: 1000px;
+  }
 }

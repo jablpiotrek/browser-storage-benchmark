@@ -1,0 +1,46 @@
+@import './globals.scss';
+
+.controls {
+ &__section {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+ }
+
+ &__section-heading {
+   width: 100%;
+ }
+
+ &__input {
+  margin: 0 $spacer * 2 0 0;
+ }
+
+ &__section {
+  margin: $spacer * 2 0;
+ }
+
+ &__error {
+  color: $color-secondary;
+  margin: 0;
+ }
+
+ &__button {
+   padding: $spacer $spacer * 2;
+   margin: 0 $spacer;
+   border: 2px solid $color-primary;
+   background-color: $color-secondary;
+   color: $color-primary;
+   font-size: 16px;
+   &:first-child {
+     margin-left: 0;
+   }
+
+   &:hover,
+   &:focus,
+   &:disabled {
+    background-color: $color-primary;
+    color: $color-secondary;
+    border-color: $color-secondary;
+   }
+ }
+}

@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles/results.scss';
+
 function Results(props) {
   const { results, handleDeleteResult } = props;
-  const resultsTable = results.map(result => (
+  const resultsTable = results.slice(0).reverse().map(result => (
     <tr
       key={result.id}
       className="results__table-row"
