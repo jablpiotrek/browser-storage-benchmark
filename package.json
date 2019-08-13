@@ -1,6 +1,6 @@
 {
   "name": "browser-storage-benchmark",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "localforage": "^1.7.3",
