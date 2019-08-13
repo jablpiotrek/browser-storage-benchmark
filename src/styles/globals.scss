@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+
+$color-primary: #0C4767;
+$color-secondary: #FA7921;
+$black: black;
+
+$spacer: 8px;
+
+$screen-medium: 768px;
+$screen-large: 1024px;
+
+$font: 'Karla', sans-serif;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+input,
+select,
+label,
+button,
+th,
+td {
+  color: $black;
+  font-family: $font;
+}
+
+h3 {
+  background-color: $color-primary;
+  color: $color-secondary;
+  padding: $spacer;
+  text-align: center;
+  border: solid $color-secondary;
+  border-width: 3px 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+h4 {
+  color: $color-primary;
+  border-bottom: $color-secondary 1px solid;
+}
+
+input {
+  border: 2px solid $color-primary;
+  padding: $spacer;
+  font-size: 12px;
+}
+
+select {
+  font-size: 16px;
+}

@@ -1,0 +1,15 @@
+@import './globals.scss';
+@import './controls.scss';
+
+.results {
+  &__table {
+    &-cell {
+      padding: $spacer / 2;
+      text-align: center;
+    }
+  }
+
+  &__delete-button {
+    @extend .controls__button;
+  }
+}
