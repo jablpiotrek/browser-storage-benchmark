@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "localforage": "^1.7.3",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "randomstring": "^1.1.5",
     "react": "^16.8.6",
